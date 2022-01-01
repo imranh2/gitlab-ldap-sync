@@ -1,0 +1,18 @@
+ldap:
+  url: ldap://ldap.example.com
+  baseDN: dc=example,dc=com
+gitlab:
+  url: https://gitlab.example.com
+  token:
+
+admingroup: gitlabadmins
+groups:
+  - gitlab: sre
+    ldap: sre
+    perms: 40 # https://docs.gitlab.com/ee/development/permissions.html#members
+  - gitlab: testers
+    ldap: test-qa
+    perms: 40
+  - gitlab: website
+    ldap: html
+    perms: 40

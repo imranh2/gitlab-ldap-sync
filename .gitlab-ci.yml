@@ -1,0 +1,23 @@
+image: debian:stable
+
+stages:
+  - test
+  - run
+
+python-syntax-check:
+  stage: test
+  script:
+   - apt update
+   - apt install -y python3 python3-ldap python3-requests python3-yaml
+   - python3 -m compileall sync.py
+
+run-live:
+  stage: run
+  variables:
+    GITLAB_TOKEN: $GITLABCI_VARIABLE
+  script:
+   - apt update
+   - apt install -y python3 python3-ldap python3-requests python3-yaml
+   - python3 sync.py
+  only:
+  - master
